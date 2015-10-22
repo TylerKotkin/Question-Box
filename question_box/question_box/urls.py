@@ -15,7 +15,13 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+from inquest import urls as inquest_urls
+from inquest import views as qviews
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^login$', qviews.user_login, name='user_login'),
+    url(r'^logout$', qviews.user_logout, name='user_logout'),
+    url(r'^register$', qviews.user_register, name='user_register'),
+    url(r'', include(inquest_urls)),
 ]
