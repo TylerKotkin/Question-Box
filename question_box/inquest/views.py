@@ -24,7 +24,7 @@ def user_login(request):
         user = authenticate(username=username, password=password)
         if user is not None and user.is_active:
             login(request, user)
-            return redirect(reverse('/'))
+            return redirect('/')
         else:
             messages.add_message(request, messages.ERROR, 'ERROR LOGGING IN!')
             return render(request,
