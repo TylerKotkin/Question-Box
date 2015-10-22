@@ -11,4 +11,3 @@ whitenoise==1.0.6
 django-bootstrap==0.2.4
 django-bootstrap-themes==3.1.2
 django-bootstrap3==6.2.2
-requests
