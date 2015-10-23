@@ -31,13 +31,16 @@
 <table class="table table-striped">
 {% for answer in answers %}
   <tr>
-    <td>{{ answer.text }}</td>
-    <td><a href="{% url 'user_detail' answer.user.pk %}">{{ answer.user }}</a> - <small>{{ answer.timestamp}} ({{ answer.timestamp | timesince }} ago)</small></td>
+    <td>{{ answer.text }}
+    <br><a href="{% url 'user_detail' answer.user.pk %}">- {{ answer.user }}</a> <small>{{ answer.timestamp}} ({{ answer.timestamp | timesince }} ago)</small></td>
   </tr>
   {% endfor %}
 </table>
 
+<div class="text-center">
+      {% bootstrap_pagination page_obj pages_to_show=5 %}
+    </div>
 
-
+</body>
 
 {% endblock %}
