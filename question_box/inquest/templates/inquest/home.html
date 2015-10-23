@@ -31,7 +31,7 @@
                 <nav>
                   <ul class="nav masthead-nav">
                   {% if user.is_authenticated %}
-                    <li><a href="#">User</a></li>
+                    <li><a href="{% url 'user_detail' user.pk %}">{{ user.username }}</a></li>
                     <li><a href="{% url 'user_logout' %}">Logout</a></li>
                   {% else %}
                     <li><a href="{% url 'user_login' %}">Login</a></li>
@@ -48,7 +48,7 @@
               <p class="lead">X</p>
               <p class="lead">
                 <br>
-                <a href="#" class="btn btn-lg btn-default">Get Started</a>
+                <a href="{% url 'all_questions' %}" class="btn btn-lg btn-default">Get Started</a>
               </p>
             </div>
 

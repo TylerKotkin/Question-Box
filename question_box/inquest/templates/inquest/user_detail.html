@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% block content %}
+
+<body>
+
+<h2> {{ view.user.username }}'s Info</h2>
+
+
+<dl>
+  <dt>User Name: {{ view.user.username }}</dt>
+  <dt>First Name: {{ view.user.first_name }}</dt>
+  <dt>Last Name: {{ view.user.last_name }}</dt>
+</dl>
+
+
+
+<h4>{{ view.user.username }}'s Questions</h4>
+
+<br>
+<table class="table table-striped">
+<tr>
+<th>Title</th>
+<th>Timestamp</th>
+<th>Question</th>
+
+</tr>
+{% for question in questions %}
+  <tr>
+    <td><a href="{% url 'answer_list' question.pk %}">{{ question.title|truncatechars:50}}</a></td>
+    <td><small>{{ question.timestamp}} ({{ question.timestamp | timesince }} ago)</small></td>
+    <td>{{question.text|truncatechars:75}}</td>
+  </tr>
+  {% endfor %}
+</table>
+
+<div class="text-center">
+      {% bootstrap_pagination page_obj pages_to_show=5 %}
+    </div>
+
+{% endblock %}

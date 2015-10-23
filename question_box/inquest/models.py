@@ -19,7 +19,7 @@ class Question(models.Model):
 
 
 class Answer(models.Model):
-    answer = models.TextField(max_length=2000)
+    text = models.TextField(max_length=2000)
     timestamp = models.DateTimeField()
     question = models.ForeignKey(Question)
     user = models.ForeignKey(User)
