@@ -14,6 +14,18 @@ from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
+
+class UserListView(generic.ListView):
+    template_name = 'inquest/user_detail.html'
+    context_object_name = 'question'
+    paginate_by = 25
+
+    def get_queryset(self):
+        self.user = get_object_or_404(User, pk=self.kwargs['pk'])
+        return self.user.question_set.all().order_by('-timestamp') \
+            .prefetch_related('user')
+
+
 def home(request):
     return render(request, 'inquest/home.html')
 

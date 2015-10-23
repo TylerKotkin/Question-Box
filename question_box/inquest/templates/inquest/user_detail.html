@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% block content %}
+
+<body>
+
+<h2> {{ view.user.username }}'s Info</h2>
+
+
+<dl>
+  <dt>User Name: {{ view.user.username }}</dt>
+  <dt>First Name: {{ view.user.first_name }}</dt>
+  <dt>Last Name: {{ view.user.last_name }}</dt>
+</dl>
+
+
+
+<h3>{{ view.user.username }}'s Questions</h3>
+
+<div class="text-center">
+      {% bootstrap_pagination page_obj pages_to_show=5 %}
+    </div>
+
+{% endblock %}
