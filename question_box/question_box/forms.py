@@ -4,7 +4,6 @@ from inquest.models import Question, Answer
 
 
 class AnswerForm(forms.ModelForm):
-    password = forms.CharField(widget=forms.PasswordInput())
 
     class Meta:
         model = Answer

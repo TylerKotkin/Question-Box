@@ -13,7 +13,7 @@
   {{ question.user}} - <small>{{ question.timestamp}} ({{ question.timestamp | timesince }} ago)</small>
 </p>
 
-
+{% if user.is_authenticated %}
 <form method="POST" action="{% url 'add_answer' question.pk %}">
   {% csrf_token %}
   <div class="row">
@@ -25,10 +25,11 @@
 
   </div>
 </form>
+{% endif %}
 
 
 <table class="table table-striped">
-{% for question in questions %}
+{% for answer in answers %}
   <tr>
     <td>{{ answer.text }}</td>
     <td><a href="{% url 'user_detail' answer.user.pk %}">{{ answer.user }}</a> - <small>{{ answer.timestamp}} ({{ answer.timestamp | timesince }} ago)</small></td>

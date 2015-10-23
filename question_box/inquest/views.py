@@ -40,7 +40,7 @@ class QuestionListView(generic.ListView):
 
 class AnswerListView(generic.ListView):
     template_name = 'answer_list.html'
-    context_object_name = 'answer'
+    context_object_name = 'answers'
     paginate_by = 25
     model = Answer
 
@@ -50,6 +50,7 @@ class AnswerListView(generic.ListView):
         return context
 
     def get_queryset(self):
+        self.form = AnswerForm()
         preload = Answer.objects.all()
         return preload.order_by('-timestamp')
 
@@ -84,7 +85,7 @@ def ask_question(request):
                   {'form': form})
 
 
-@login_required
+
 def add_answer(request, question_id):
     if request.method == 'POST':
         form = AnswerForm(request.POST)
