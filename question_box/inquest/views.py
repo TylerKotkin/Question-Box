@@ -49,10 +49,14 @@ class AnswerListView(generic.ListView):
         context['question'] = Question.objects.get(pk=self.kwargs['pk'])
         return context
 
+    # def get_queryset(self):
+    #     self.form = AnswerForm()
+    #     preload = Answer.objects.all()
+    #     return preload.order_by('-timestamp')
+
     def get_queryset(self):
-        self.form = AnswerForm()
-        preload = Answer.objects.all()
-        return preload.order_by('-timestamp')
+        return Answer.objects.filter(question=Question.objects.get(
+            pk=self.kwargs['pk'])).order_by('-timestamp')
 
 
 def home(request):
