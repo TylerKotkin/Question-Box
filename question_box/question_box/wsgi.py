@@ -15,5 +15,5 @@ from dj_static import Cling
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "todomvc.settings")
 
-# application = DjangoWhiteNoise(get_wsgi_application())
-application = Cling(get_wsgi_application())
+application = DjangoWhiteNoise(get_wsgi_application())
+# application = Cling(get_wsgi_application())
