@@ -27,7 +27,7 @@
 </tr>
 {% for question in questions %}
   <tr>
-    <td><a href="#">{{ question.title|truncatechars:50}}</a></td>
+    <td><a href="{% url 'answer_list' question.pk %}">{{ question.title|truncatechars:50}}</a></td>
     <td><small>{{ question.timestamp}} ({{ question.timestamp | timesince }} ago)</small></td>
     <td>{{question.text|truncatechars:75}}</td>
   </tr>

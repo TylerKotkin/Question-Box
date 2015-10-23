@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.shortcuts import redirect, render, get_object_or_404
 from django.utils.timezone import make_aware
-from question_box.forms import UserForm, QuestionForm
+from question_box.forms import AnswerForm, UserForm, QuestionForm
 from django.db.models import Count
 from django.views import generic
 from .models import Question, Answer
@@ -38,6 +38,22 @@ class QuestionListView(generic.ListView):
         return preload.order_by('-timestamp')
 
 
+class AnswerListView(generic.ListView):
+    template_name = 'answer_list.html'
+    context_object_name = 'answer'
+    paginate_by = 25
+    model = Answer
+
+    def get_context_data(self, **kwargs):
+        context = super(AnswerListView, self).get_context_data(**kwargs)
+        context['question'] = Question.objects.get(pk=self.kwargs['pk'])
+        return context
+
+    def get_queryset(self):
+        preload = Answer.objects.all()
+        return preload.order_by('-timestamp')
+
+
 def home(request):
     return render(request, 'inquest/home.html')
 
@@ -66,6 +82,34 @@ def ask_question(request):
     return render(request,
                   'inquest/ask_question.html',
                   {'form': form})
+
+
+@login_required
+def add_answer(request, question_id):
+    if request.method == 'POST':
+        form = AnswerForm(request.POST)
+        if form.is_valid():
+            answer = form.save(commit=False)
+            answer.user = request.user
+            answer.question = Question.objects.get(pk=question_id)
+            answer.timestamp = make_aware(datetime.now())
+            answer.save()
+            messages.add_message(request,
+                                 messages.SUCCESS,
+                                 'Answer posted.')
+
+        else:
+            messages.add_message(request,
+                                 messages.ERROR,
+                                 'Form data invalid.')
+
+    else:
+        form = QuestionForm()
+    return render(request,
+                  'inquest/answer_list.html',
+                  {'form': form, 'question': Question.objects.get(pk=question_id)})
+
+
 
 
 def user_login(request):

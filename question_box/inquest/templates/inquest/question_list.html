@@ -14,7 +14,7 @@
 </tr>
 {% for question in questions %}
   <tr>
-    <td><a href="#">{{ question.title|truncatechars:50}}</a></td>
+    <td><a href="{% url 'answer_list' question.pk %}">{{ question.title|truncatechars:50}}</a></td>
     <td><a href="{% url 'user_detail' question.user.pk %}">{{ question.user}}</a></td>
     <td>{{question.text|truncatechars:75}} -<small>({{ question.timestamp | timesince }} ago)</small></td>
   </tr>

@@ -1,6 +1,14 @@
 from django import forms
 from django.contrib.auth.models import User
-from inquest.models import Question
+from inquest.models import Question, Answer
+
+
+class AnswerForm(forms.ModelForm):
+    password = forms.CharField(widget=forms.PasswordInput())
+
+    class Meta:
+        model = Answer
+        fields = ['text']
 
 
 class UserForm(forms.ModelForm):
