@@ -15,7 +15,24 @@
 
 
 
-<h3>{{ view.user.username }}'s Questions</h3>
+<h4>{{ view.user.username }}'s Questions</h4>
+
+<br>
+<table class="table table-striped">
+<tr>
+<th>Title</th>
+<th>Timestamp</th>
+<th>Question</th>
+
+</tr>
+{% for question in questions %}
+  <tr>
+    <td><a href="#">{{ question.title|truncatechars:50}}</a></td>
+    <td><small>{{ question.timestamp}} ({{ question.timestamp | timesince }} ago)</small></td>
+    <td>{{question.text|truncatechars:75}}</td>
+  </tr>
+  {% endfor %}
+</table>
 
 <div class="text-center">
       {% bootstrap_pagination page_obj pages_to_show=5 %}

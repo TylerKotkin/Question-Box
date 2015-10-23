@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% block content %}
+
+<body>
+
+<h2>All Questions</h2>
+<br>
+<table class="table table-striped">
+<tr>
+<th>Title</th>
+<th>User</th>
+<th>Question</th>
+</tr>
+{% for question in questions %}
+  <tr>
+    <td><a href="#">{{ question.title|truncatechars:50}}</a></td>
+    <td><a href="{% url 'user_detail' question.user.pk %}">{{ question.user}}</a></td>
+    <td>{{question.text|truncatechars:75}} -<small>({{ question.timestamp | timesince }} ago)</small></td>
+  </tr>
+  {% endfor %}
+</table>
+
+<div class="text-center">
+      {% bootstrap_pagination page_obj pages_to_show=5 %}
+    </div>
+
+
+{% endblock %}

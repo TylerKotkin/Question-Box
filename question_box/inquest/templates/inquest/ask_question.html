@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% block content %}
+
+<form method="POST" action="{% url 'ask_question' %}">
+  {% csrf_token %}
+  <div class="row">
+    <div class="col-md-8">
+      <br><br>
+      <textarea class="form-control" cols="90" id="id_title" maxlength="255" name="title" rows="1" placeholder="Title"></textarea>
+    </div>
+  </div>
+  <br><br>
+  <div class="row">
+    <div class="col-md-8">
+      <textarea class="form-control" cols="90" id="id_text" maxlength="2000" name="text" rows="10" placeholder="Question"></textarea>
+      <br><br>
+      <input type="submit" class="btn btn-md btn-primary" value="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ask!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;">
+    </div>
+
+  </div>
+</form>
+<br>
+<br>
+
+{% endblock %}
