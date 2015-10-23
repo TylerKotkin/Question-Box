@@ -1,1 +1,1 @@
-web: gunicorn question-box.wsgi --log-file -
+web: gunicorn pony.wsgi --log-file -
