@@ -98,6 +98,7 @@ def add_answer(request, question_id):
             messages.add_message(request,
                                  messages.SUCCESS,
                                  'Answer posted.')
+            return redirect('answer_list', answer.question.pk)
 
         else:
             messages.add_message(request,
