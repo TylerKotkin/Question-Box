@@ -12,6 +12,8 @@ class Question(models.Model):
     # tag = models.ManyToManyField('Tag')
 
 
+
+
 # class Tag(models.Model):
 #     tag = models.CharField(max_length=50)
 #     question = models.ManyToManyField(Question)
@@ -25,6 +27,9 @@ class Answer(models.Model):
     user = models.ForeignKey(User)
 
 
-# class Score(models.Model):
-#     user = models.ForeignKey(User)
-#     points = models.IntegerField()
+    def __str__(self):
+        return "{} asked by user {}".format(self.text, self.user)
+
+class Score(models.Model):
+    user = models.ForeignKey(User)
+    points = models.IntegerField()
