@@ -40,15 +40,16 @@
                 <a href="{% url 'all_questions' %}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Questions<span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
                   <li class="divider"></li>
+                  {% if user.is_authenticated %}
                   <li><a href="{% url 'ask_question' %}">Ask A Question</a></li>
                   <li class="divider"></li>
+                  {% endif %}
                   <li><a href="{% url 'all_questions' %}">All Questions</a></li>
                   <li class="divider"></li>
                 </ul>
               </li>
 
-
-          {% if user.is_authenticated %}
+              {% if user.is_authenticated %}
 
             <li>
               <a href="{% url 'user_detail' user.pk %}">{{ user.username }}</a>

@@ -2,6 +2,8 @@
 {% load bootstrap3 %}
 {% block content %}
 
+<h2>Ask A Question</h2>
+<br>
 <form method="POST" action="{% url 'ask_question' %}">
   {% csrf_token %}
   <div class="row">

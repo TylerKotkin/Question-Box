@@ -10,7 +10,7 @@
   {{ question.text }}
 </p>
 <p>
-  {{ question.user}} - <small>{{ question.timestamp}} ({{ question.timestamp | timesince }} ago)</small>
+  Asked by <a href="{% url 'user_detail' question.user.pk %}">{{ question.user}}</a> <br> <small>{{ question.timestamp}} ({{ question.timestamp | timesince }} ago)</small>
 </p>
 
 {% if user.is_authenticated %}
@@ -37,6 +37,10 @@
   {% endfor %}
 </table>
 
+
+<div class="text-center">
+      {% bootstrap_pagination page_obj pages_to_show=5 %}
+    </div>
 
 </body>
 
