@@ -9,11 +9,25 @@ from django.utils.timezone import make_aware
 from question_box.forms import AnswerForm, UserForm, QuestionForm
 from django.db.models import Count
 from django.views import generic
-from .models import Question, Answer
+from .models import Question, Answer, Vote
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
+
+@login_required
+def upvote(request, pk):
+    answer = get_object_or_404(Answer, pk=pk)
+    answer.vote_set.create(user=request.user, upvote=True)
+
+    return redirect('answer_list', answer.question.pk)
+
+@login_required
+def downvote(request, pk):
+    answer = get_object_or_404(Answer, pk=pk)
+    answer.vote_set.create(user=request.user, upvote=False)
+
+    return redirect('answer_list', answer.question.pk)
 
 class UserListView(generic.ListView):
     template_name = 'inquest/user_detail.html'

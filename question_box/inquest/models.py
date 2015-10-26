@@ -28,3 +28,11 @@ class Answer(models.Model):
 # class Score(models.Model):
 #     user = models.ForeignKey(User)
 #     points = models.IntegerField()
+
+class Vote(models.Model):
+    user = models.ForeignKey(User)
+    answer = models.ForeignKey('Answer')
+    upvote = models.BooleanField(default=True)
+
+    class Meta:
+        unique_together = ('user', 'answer')
