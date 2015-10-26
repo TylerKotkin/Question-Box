@@ -10,23 +10,10 @@
 <form method="POST" action="{% url 'user_login' %}">
   {% csrf_token %}
 
-  <div class="row">
-    <div class="col-md-3">
-      <input class="form-control" type="text" value="{{ username }}" cols="30" id="id_username" maxlength="30" name="username" rows="1" placeholder="Username"></input>
-    </div>
-  </div>
-  <br>
-  <div class="row">
-    <div class="col-md-3">
-      <input class="form-control" type="password" value="{{ password }}" cols="30" id="id_password" maxlength="30" name="password" rows="1" placeholder="Password"></input>
-    </div>
-  </div>
-  <br>
-  <div class="row">
-    <div class="col-md-3">
+  {{ form.as_p }}
       <input type="submit" class="btn btn-md btn-primary" value="&nbsp;&nbsp;Login&nbsp;&nbsp;">
-    </div>
-  </div>
+
+  
 
 </form>
 

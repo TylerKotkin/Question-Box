@@ -6,34 +6,7 @@
 
   <form method="POST" action="{% url 'user_register' %}">
     {% csrf_token %}
-    <div class="row">
-    <div class="col-md-4">
-      <input class="form-control" cols="40" id="id_wtitle" maxlength="50" name="username" rows="1" placeholder="Username"></input>
-    </div><br><br>
-    </div>
-    <div class="row">
-      <div class="col-md-4">
-      <input class="form-control" cols="40" id="id_wtitle" maxlength="50" name="email" rows="1" placeholder="Email"></input>
-    </div><br><br>
-    </div>
-    <div class="row">
-    <div class="col-md-4">
-      <input class="form-control" cols="40" id="id_wtitle" maxlength="50" name="first_name" rows="1" placeholder="First Name"></input>
-    </div><br><br>
-    </div>
-      <div class="row">
-      <div class="col-md-4">
-      <input class="form-control" cols="40" id="id_wtitle" maxlength="50" name="last_name" rows="1" placeholder="Last Name"></input>
-    </div><br><br>
-    </div>
-    <div class="row">
-    <div class="col-md-4">
-      <input class="form-control" type="password" cols="40" id="id_wtitle" maxlength="50" name="password" rows="1" placeholder="Password"></input>
-
-
-
-
-      <br>
+    {{ form.as_p }}
       <input type="submit" class="btn btn-md btn-primary" value="&nbsp;&nbsp;Register!&nbsp;&nbsp;">
     </div>
   </div>

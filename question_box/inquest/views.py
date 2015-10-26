@@ -118,21 +118,21 @@ def add_answer(request, question_id):
 
 
 
-def user_login(request):
-    if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-        user = authenticate(username=username, password=password)
-        if user is not None and user.is_active:
-            login(request, user)
-            return redirect('all_questions')
-        else:
-            messages.add_message(request, messages.ERROR, 'ERROR LOGGING IN!')
-            return render(request,
-                          'inquest/user_login.html',
-                          {'username': username})
-    else:
-        return render(request, 'inquest/user_login.html')
+# def user_login(request):
+#     if request.method == 'POST':
+#         username = request.POST['username']
+#         password = request.POST['password']
+#         user = authenticate(username=username, password=password)
+#         if user is not None and user.is_active:
+#             login(request, user)
+#             return redirect('all_questions')
+#         else:
+#             messages.add_message(request, messages.ERROR, 'ERROR LOGGING IN!')
+#             return render(request,
+#                           'inquest/user_login.html',
+#                           {'username': username})
+#     else:
+#         return render(request, 'inquest/user_login.html')
 
 
 def user_register(request):
