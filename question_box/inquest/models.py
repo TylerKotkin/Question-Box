@@ -17,14 +17,15 @@ class Question(models.Model):
 #     question = models.ManyToManyField(Question)
 
 
-
 class Answer(models.Model):
     text = models.TextField(max_length=2000)
     timestamp = models.DateTimeField()
     question = models.ForeignKey(Question)
     user = models.ForeignKey(User)
+    ascore = models.IntegerField(default=0)
+    voter = models.ForeignKey(User, null=True, related_name='voter')
 
 
-# class Score(models.Model):
-#     user = models.ForeignKey(User)
-#     points = models.IntegerField()
+class Score(models.Model):
+    user = models.ForeignKey(User)
+    points = models.IntegerField(default=0)
