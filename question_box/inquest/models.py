@@ -22,6 +22,7 @@ class Answer(models.Model):
     text = models.TextField(max_length=2000)
     timestamp = models.DateTimeField()
     question = models.ForeignKey(Question)
+    ascore = models.IntegerField(default=0)
     user = models.ForeignKey(User)
 
 

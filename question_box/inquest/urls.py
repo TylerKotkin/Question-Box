@@ -8,5 +8,7 @@ urlpatterns = [
     url(r'^question/ask$', qviews.ask_question, name='ask_question'),
     url(r'^answer/(?P<pk>\w+)$', qviews.AnswerListView.as_view(), name='answer_list'),
     url(r'^answer/add/(?P<question_id>\d+)$', qviews.add_answer, name='add_answer'),
+    url(r'^answer/votefor/(?P<question_id>\w+)$', qviews.votefor, name='votefor'),
+    url(r'^answer/voteagainst/(?P<question_id>\w+)$', qviews.voteagainst, name='voteagainst'),
     url(r'^$', qviews.home, name='home'),
     ]
