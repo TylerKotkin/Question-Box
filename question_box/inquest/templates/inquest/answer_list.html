@@ -39,6 +39,7 @@ Tags:  {{ question.tag }}
   </tr>
 {% for answer in answers %}
   <tr>
+    {% if user.is_authenticated %}
     <td>
 
 <form method="POST" action="{% url 'votefor' question.pk %}">
@@ -58,7 +59,7 @@ Tags:  {{ question.tag }}
             </form>
 <small>Score:&nbsp;{{ answer.ascore }}</small>
 </td>
-
+{% endif %}
 
 
 
