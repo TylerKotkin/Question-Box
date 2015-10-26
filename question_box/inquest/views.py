@@ -50,9 +50,13 @@ class AnswerListView(generic.ListView):
         return context
 
     def get_queryset(self):
-        self.form = AnswerForm()
-        preload = Answer.objects.all()
-        return preload.order_by('-timestamp')
+#         self.form = AnswerForm()
+#         preload = Answer.objects.all()
+#         return preload.order_by('-timestamp')
+
+        return Answer.objects.filter(question=Question.objects.get(
+            pk=self.kwargs['pk'])).order_by('-ascore')
+
 
 
 def home(request):
@@ -112,6 +116,38 @@ def add_answer(request, question_id):
                   {'form': form, 'question': Question.objects.get(pk=question_id)})
 
 
+@login_required
+def votefor(request, question_id):
+    if request.method == 'POST':
+        answer = Answer.objects.get(pk=request.POST['answer_id'])
+        answer.voter = request.user
+        answer.save()
+        answer.ascore += 1
+        answer.save()
+        messages.add_message(request,
+                             messages.SUCCESS,
+                             'Voted for this answer')
+    else:
+        messages.add_message(request,
+                             messages.ERROR,
+                             'ERROR')
+    return redirect('answer_list', answer.question.pk)
+
+
+@login_required
+def voteagainst(request, question_id):
+    if request.method == 'POST':
+        answer = Answer.objects.get(pk=request.POST['answer_id'])
+        answer.voter = request.user
+        answer.save()
+        answer.ascore -= 1
+        answer.save()
+        messages.add_message(request, messages.SUCCESS,
+                             'Voted against this answer.')
+    else:
+        messages.add_message(request, messages.ERROR,
+                             'ERROR')
+    return redirect('answer_list', answer.question.pk)
 
 
 def user_login(request):

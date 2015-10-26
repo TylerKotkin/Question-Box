@@ -29,19 +29,48 @@
 
 
 <table class="table table-striped">
+
+  <tr>
+    <th></th>
+    <th></th>
+  </tr>
 {% for answer in answers %}
   <tr>
-    <td>{{ answer.text }}
-    <br><a href="{% url 'user_detail' answer.user.pk %}">- {{ answer.user }}</a> <small>{{ answer.timestamp}} ({{ answer.timestamp | timesince }} ago)</small></td>
-  </tr>
+    <td>
+
+<form method="POST" action="{% url 'votefor' question.pk %}">
+              {% csrf_token %}
+              <input type="hidden" name="answer_id" value="{{ answer.pk }}">
+              <input type="hidden" name="next" value="{{ request.path }}">
+              <button type="submit" class="btn btn-md btn-primary" title="votefor"><span class="glyphicon glyphicon-thumbs-up"></span></button>
+</form>
+
+
+
+            <form method="POST" action="{% url 'voteagainst' question.pk %}">
+              {% csrf_token %}
+              <input type="hidden" name="answer_id" value="{{ answer.pk }}">
+              <input type="hidden" name="next" value="{{ request.path }}">
+              <button type="submit" class="btn btn-md btn-primary" title="voteagainst"><span class="glyphicon glyphicon-thumbs-down"></span></button>
+            </form>
+<small>Score:&nbsp;{{ answer.ascore }}</small>
+</td>
+
+
+
+
+  <td>{{ answer.text }}
+
+  <br>
+  <br><a href="{% url 'user_detail' answer.user.pk %}">- {{ answer.user }}</a><small> {{ answer.timestamp}} ({{ answer.timestamp | timesince }} ago)</small>
+  <br>
+</td>
+</tr>
   {% endfor %}
 </table>
-
-
 <div class="text-center">
       {% bootstrap_pagination page_obj pages_to_show=5 %}
     </div>
-
 </body>
 
 {% endblock %}
