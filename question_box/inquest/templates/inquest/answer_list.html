@@ -10,6 +10,9 @@
   {{ question.text }}
 </p>
 <p>
+Tags:  {{ question.tag }}
+</p>
+<p>
   Asked by <a href="{% url 'user_detail' question.user.pk %}">{{ question.user}}</a> <br> <small>{{ question.timestamp}} ({{ question.timestamp | timesince }} ago)</small>
 </p>
 

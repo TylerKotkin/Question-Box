@@ -9,11 +9,12 @@ class Question(models.Model):
     text = models.TextField(max_length=2000)
     timestamp = models.DateTimeField()
     user = models.ForeignKey(User)
-    tag = models.ManyToManyField('Tag', related_name='question')
+    # tag = models.ManyToManyField('Tag', related_name='question')
+    tag = models.CharField(max_length=255)
 
 
-class Tag(models.Model):
-    tag = models.CharField(max_length=50)
+# class Tag(models.Model):
+#     tag = models.CharField(max_length=50)
     # question = models.ManyToManyField(Question)
 
 
