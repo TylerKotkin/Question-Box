@@ -63,7 +63,7 @@
 
   <br>
   <br><a href="{% url 'user_detail' answer.user.pk %}">- {{ answer.user }}</a><small> {{ answer.timestamp}} ({{ answer.timestamp | timesince }} ago)</small>
-  <br><small>Answer Score: {{ answer.ascore }}</small>
+  <br>
 </td>
 </tr>
   {% endfor %}
