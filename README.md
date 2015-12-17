@@ -1,6 +1,6 @@
 # <div align="center">Question Box</div>
 
-Question Box is a web application that allows users to post questions, answer questions and rate answers given by other users.
+Question Box is a web application that allows users to post questions, answer questions and rate answers given by other users. Click [here](https://questionboxtk.herokuapp.com/) to view the live version of Question Box.
 
 ## <div align="center">Instructions</div>
 
